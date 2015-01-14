@@ -1,3 +1,24 @@
+module SC
+
+  # Extends the caller with the SC class methods on #include
+  def self.included(klass)
+    klass.extend(ClassMethods)
+  end
+  
+  module ClassMethods
+
+    # Register the given method name supporting the given parameters.
+    #
+    # @param [Symbol|String] name the method name to register
+    # @param [<Symbol|String>] params that the method supports
+    def implements name, *params
+    end
+
+  end
+
+end
+
+__END__
 content, meta = File.read('sample.rb').split("__END__\n")
 place_holders = content.scan /#sc \w+(?:\(\w+(?:, \w+)*\))?/
 rules = meta.scan /sc \w+(?: \w+(?:, \w+)*)?: \w+\n(?: {2,4}[^\n]+(?:, [^\n]+)* -> [^\n]+\n)+/
