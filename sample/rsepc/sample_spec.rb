@@ -12,7 +12,7 @@ describe Sample do
     sample.sum(2, 2).should == 4
   end
 
-  cd_spec_for '#rule_of_three Float, Float, Float -> Float' do
+  cs_spec_for '#rule_of_three Float, Float, Float -> Float' do
     sample.rule_of_three(1.0, 1.0, 2.0).should == 2.0
     sample.rule_of_three(2.0, 4.0, 3.0).should == 6.0
     sample.rule_of_three(10.0, 2.0, 3.0).should == 0.6

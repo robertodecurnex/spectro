@@ -25,5 +25,5 @@ spec_for hello String -> String
 ```
 
 ```ruby
-  sample.hello 'Eddie' #=> 'Say Hello to Eddie'
+sample.hello 'Eddie' #=> 'Say Hello to Eddie'
 ```

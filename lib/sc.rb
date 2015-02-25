@@ -1,7 +1,13 @@
+# Requires every file from de current directory SC cache
+#Dir['./.sc/cache/**/*.rb'].each { |file_path| require file_path }
+
+require_relative 'sc/database.rb'
+
+# Specs driven social meta-programming
 module SC
 
   # Extends the caller with the SC class methods on #include
-  def self.included(klass)
+  def self.included klass
     klass.extend(ClassMethods)
   end
   
@@ -11,7 +17,11 @@ module SC
     #
     # @param [Symbol|String] name the method name to register
     # @param [<Symbol|String>] params that the method supports
-    def implements name, *params
+    def implements interfaces
+      interfaces.each do |method_name, required_params|
+        λ = SC::Database.fetch(self, method_name, required_params) 
+        self.send(:define_method, method_name, &λ)
+      end
     end
 
   end

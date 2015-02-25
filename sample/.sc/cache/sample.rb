@@ -2,14 +2,22 @@
 # DO NOT MODIFY ITS CONTENT. IT WILL BE
 # OVERWRITTEN.
 
-Sample
+class Sample
+
   # id: safdh3j43x234zadx
-  hello s1
-    "Say Hello to #{s1}" 
+  def hello s1
+    "Say Hello to #{s1}"
+  end
+  
   # id: dasc7dsg7221m3m1d
-  sum i1, i2
+  def sum i1, i2
     i1 + i2
+  end
+  
   # id: safg5312km3mk123c
-  rule_of_three f1, f2, f3
+  def rule_of_three f1, f2, f3
     f3 * f2 / f1
-    
+  end
+
+end
+
