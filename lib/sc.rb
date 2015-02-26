@@ -19,7 +19,7 @@ module SC
     # @param [<Symbol|String>] params that the method supports
     def implements interfaces
       interfaces.each do |method_name, required_params|
-        λ = SC::Database.fetch(self, method_name, required_params) 
+        λ = SC::Database.fetch(self, method_name, *required_params) 
         self.send(:define_method, method_name, &λ)
       end
     end
