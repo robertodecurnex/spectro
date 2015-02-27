@@ -2,6 +2,6 @@
 # DO NOT MODIFY ITS CONTENT. IT WILL BE
 # OVERWRITTEN.
 
-lambda do |i1, i2| do
+lambda do |i1, i2|
   return i1 + i2
 end

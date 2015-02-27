@@ -1,5 +1,4 @@
-# Requires every file from de current directory SC cache
-#Dir['./.sc/cache/**/*.rb'].each { |file_path| require file_path }
+require 'yaml'
 
 require_relative 'sc/database.rb'
 

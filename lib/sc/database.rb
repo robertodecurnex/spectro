@@ -5,15 +5,10 @@ module SC
   # to fetch specific elements by different criterias.
   class Database
 
-    attr_accessor :lambdas
+    attr_accessor :index
 
     def initialize
-      # MOCK MOCK MOCK
-      self.lambdas = {
-        'Sample#hello:1' => lambda {|s1| "Say Hello to #{s1}"},
-        'Sample#sum:2' => lambda {|i1, i2| i1 + i2},
-        'Sample#rule_of_three:3' => lambda {|f1, f2, f3| f3 * f2 / f1}
-      }
+      self.index = YAML.load_file('./.sc/index.yml')
     end
 
     # Instance delegator of SC::Database#fetch
@@ -41,7 +36,8 @@ module SC
     # @param [<Symbo>] required_params parameters that would be required by the lambda
     # @return [Proc] the labda that would be implemented
     def fetch klass, method_name, *required_params
-      self.lambdas["#{klass}##{method_name}:#{required_params.count}"]
+      λ_id = self.index["#{klass}"]["#{method_name}:#{required_params.count}"]
+      eval(File.read("./.sc/cache/#{λ_id}.rb"))
     end
 
   end
