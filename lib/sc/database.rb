@@ -5,10 +5,13 @@ module SC
   # to fetch specific elements by different criterias.
   class Database
 
-    attr_accessor :index
+    attr_accessor :cache, :index, :sc_path
 
-    def initialize
-      self.index = YAML.load_file('./.sc/index.yml')
+    def initialize sc_path='./.sc'
+      @@instance = self
+      self.cache = {}
+      self.sc_path = sc_path
+      self.index = YAML.load_file("#{self.sc_path}/index.yml")
     end
 
     # Instance delegator of SC::Database#fetch
@@ -37,7 +40,7 @@ module SC
     # @return [Proc] the labda that would be implemented
     def fetch klass, method_name, *required_params
       λ_id = self.index["#{klass}"]["#{method_name}:#{required_params.count}"]
-      eval(File.read("./.sc/cache/#{λ_id}.rb"))
+      return self.cache[λ_id] ||= eval(File.read("#{self.sc_path}/cache/#{λ_id}.rb"))
     end
 
   end

@@ -3,6 +3,12 @@
 
 Specs driven social meta-programming
 
+[![Build Status](https://api.travis-ci.org/robertodecurnex/sc.png)](https://travis-ci.org/robertodecurnex/sc)
+[![Code Climate](https://codeclimate.com/github/robertodecurnex/sc/badges/gpa.svg)](https://codeclimate.com/github/robertodecurnex/sc)
+[![Coverage Status](https://coveralls.io/repos/robertodecurnex/sc/badge.svg?branch=master)](https://coveralls.io/r/robertodecurnex/sc?branch=master)
+[![Test Coverage](https://codeclimate.com/github/robertodecurnex/sc/badges/coverage.svg)](https://codeclimate.com/github/robertodecurnex/sc)
+[![YARD Docs](https://img.shields.io/badge/YARD-Docs-blue.svg)](http://www.rubydoc.info/github/robertodecurnex/sc/master)
+
 ## Prototype
 
 ```ruby
