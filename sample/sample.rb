@@ -30,3 +30,6 @@ spec_for rule_of_three Float, Float, Float -> Float
   1.0, 1.0, 2.0  -> 2.0
   2.0, 4.0, 3.0  -> 6.0
   10.0, 2.0, 3.0 -> 0.6
+
+spec_for unknown_lambda -> True
+  -> true
