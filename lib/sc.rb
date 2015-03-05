@@ -17,8 +17,9 @@ module SC
     #
     # @param [{String, Symbol=><String, Symbol>}] interfaces hash of method names and required param names that the method supports
     def implements interfaces
+      file_path = caller.first.match(/#{Dir.pwd}\/(.+):\d+:in .+/)[1]
       interfaces.each do |method_name, required_params|
-        λ = SC::Database.fetch(self, method_name, *required_params) 
+        λ = SC::Database.fetch(file_path, method_name, *required_params) 
         self.send(:define_method, method_name, &λ)
       end
     end

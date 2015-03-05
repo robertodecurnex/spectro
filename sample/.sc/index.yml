@@ -2,7 +2,7 @@
 # DO NOT MODIFY ITS CONTENT. IT WILL BE
 # OVERWRITTEN.
 
-Sample:
+sample.rb:
   "hello:1": 7e46ad07603d4044a8d70c9004c48adf
   "sum:2": aac019283279bcb5f59f9760865f7d77
   "rule_of_three:3": 2e0dcba288b50596b4cdd8680fffbf2e

@@ -7,7 +7,7 @@ module SC
 
     attr_accessor :cache, :index, :sc_path
 
-    def initialize sc_path='./.sc'
+    def initialize sc_path='.sc'
       @@instance = self
       self.cache = {}
       self.sc_path = sc_path
@@ -34,12 +34,12 @@ module SC
     # Fetches and return the target lambda based on the 
     # given class, method name and required aprameters.
     #
-    # @param [Class] klass Class that would impement the lambda
+    # @param [String] file_path relative path of the file that requests the lambda
     # @param [Symbol] method_name the method name that would be implemented
-    # @param [<Symbo>] required_params parameters that would be required by the lambda
+    # @param [<Symbol>] required_params parameters that would be required by the lambda
     # @return [Proc] the labda that would be implemented
-    def fetch klass, method_name, *required_params
-      λ_id = self.index["#{klass}"]["#{method_name}:#{required_params.count}"]
+    def fetch file_path, method_name, *required_params
+      λ_id = self.index["#{file_path}"]["#{method_name}:#{required_params.count}"]
       return self.cache[λ_id] ||= eval(File.read("#{self.sc_path}/cache/#{λ_id}.rb"))
     end
 

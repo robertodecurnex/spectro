@@ -11,11 +11,11 @@ class TestSC < Minitest::Test
     end
 
     def test_class_fetch
-      assert_equal @database.fetch(Sample, 'hello', [:name]), SC::Database.fetch(Sample, 'hello', [:name])
+      assert_equal @database.fetch('test/files/sample.rb', 'hello', [:name]), SC::Database.fetch('test/files/sample.rb', 'hello', [:name])
     end
 
     def test_fetch
-      λ = @database.fetch(Sample, 'hello', [:name])
+      λ = @database.fetch('test/files/sample.rb', 'hello', [:name])
       assert_instance_of Proc, λ
       assert_equal true, λ.lambda?
       assert_equal 'Say Hello to Test', λ.call('Test')
@@ -24,6 +24,4 @@ class TestSC < Minitest::Test
   end
 
 end
-      
-class Sample
-end
+
