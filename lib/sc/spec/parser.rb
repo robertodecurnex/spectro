@@ -12,9 +12,19 @@ module SC
         self.file_path = file_path
       end
 
+      # Create an instance of SC::Spec::Parser for the given file path
+      # and return the #parse response (the collection of SC::Spec instances 
+      # for the given file)
+      #
+      # @param [String] file_path the path of the file to parse
+      # @return [<SC::Spec>] collection of specs found in the given file path
+      def self.parse(file_path)
+        SC::Spec::Parser.new(file_path).parse
+      end
+
       # Look for specs on the given file and parse them as SC::Specs
       #
-      # @return [<SC::Spec>] collection of specs found in the given file
+      # @return [<SC::Spec>] collection of specs found in the given file path
       def parse
         /.*^__END__$(?<raw_specs>.*)\Z/m =~ File.read(self.file_path)
         return raw_specs.split('spec_for')[1..-1].map do |raw_spec|
@@ -27,7 +37,7 @@ module SC
       # @param [String] raw_spec raw spec
       # @return [SC::Spec] the SC::Spec instance
       def parse_spec raw_spec
-        spec_raw_signature, *spec_raw_rules = raw_spec.split("\n")
+        spec_raw_signature, *spec_raw_rules = raw_spec.split("\n").reject(&:empty?)
         
         spec_signature = self.parse_spec_signature(spec_raw_signature)
 

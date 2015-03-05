@@ -7,6 +7,10 @@ class TestSC < Minitest::Test
       def setup
         @parser = SC::Spec::Parser.new('./test/files/sample.rb')
       end
+
+      def test_class_parser
+        assert_equal @parser.parse, SC::Spec::Parser.parse('./test/files/sample.rb')
+      end
     
       def test_parse
         @parser.parse.each do |spec|

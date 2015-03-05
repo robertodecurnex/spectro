@@ -15,6 +15,12 @@ module SC
         self.params = params
       end
 
+      def == rule
+        return \
+          self.output == rule.output && \
+          self.params == rule.params
+      end
+
     end
 
   end

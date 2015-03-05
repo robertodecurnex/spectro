@@ -3,8 +3,8 @@
 # OVERWRITTEN.
 
 sample.rb:
-  "unknown:0":
-    signature: "FalseClass -> TrueClass"
+- 'unknown_lambda:1':
+    signature: 'FalseClass -> TrueClass'
     rules:
-      - "False -> True"
+    - 'false -> true'
 

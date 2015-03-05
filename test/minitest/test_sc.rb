@@ -1,3 +1,4 @@
+require_relative './sc/test_compiler.rb'
 require_relative './sc/test_database.rb'
 require_relative './sc/test_spec.rb'
 

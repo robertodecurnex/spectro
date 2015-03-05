@@ -1,5 +1,6 @@
 require 'yaml'
 
+require_relative 'sc/compiler.rb'
 require_relative 'sc/database.rb'
 require_relative 'sc/spec.rb'
 

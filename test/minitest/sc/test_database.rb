@@ -17,7 +17,7 @@ class TestSC < Minitest::Test
     def test_fetch
       λ = @database.fetch('test/files/sample.rb', 'hello', [:name])
       assert_instance_of Proc, λ
-      assert_equal true, λ.lambda?
+      assert λ.lambda?, 'SC::Database#fetch was expected to return a lambda type of Proc but it did not.'
       assert_equal 'Say Hello to Test', λ.call('Test')
     end
 

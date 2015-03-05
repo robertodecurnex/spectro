@@ -16,6 +16,13 @@ module SC
         self.params_types = params_types
       end
 
+      def == signature
+        return \
+          self.name == signature.name && \
+          self.output_type == signature.output_type && \
+          self.params_types == signature.params_types
+      end
+
     end
 
   end

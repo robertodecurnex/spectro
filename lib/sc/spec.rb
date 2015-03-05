@@ -15,6 +15,12 @@ module SC
       self.signature = signature
     end
 
+    def == spec
+      return \
+        self.signature == spec.signature && \
+        self.rules == spec.rules
+    end
+
   end
 
 end

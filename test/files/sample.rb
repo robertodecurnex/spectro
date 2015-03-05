@@ -15,6 +15,8 @@ class Sample
 
 end
 
+
+
 __END__
 spec_for hello String -> String
   "Minion"  -> "Say Hello to Minion"
@@ -30,6 +32,7 @@ spec_for rule_of_three Float, Float, Float -> Float
   1.0, 1.0, 2.0  -> 2.0
   2.0, 4.0, 3.0  -> 6.0
   10.0, 2.0, 3.0 -> 0.6
- 
-spec_for unknown_lambda -> True
-  -> true
+
+spec_for unknown_lambda FalseClass -> TrueClass
+  false -> true
+
