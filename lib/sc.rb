@@ -1,4 +1,6 @@
 require 'digest'
+require 'forwardable'
+require 'singleton'
 require 'yaml'
 require 'yaml/store'
 

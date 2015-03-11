@@ -3,11 +3,7 @@ class TestSC < Minitest::Test
   class TestDatabase < Minitest::Test
 
     def setup
-      @database = SC::Database.new
-    end
-
-    def test_instance
-      assert_equal @database, SC::Database.instance
+      @database = SC::Database.instance
     end
 
     def test_class_fetch

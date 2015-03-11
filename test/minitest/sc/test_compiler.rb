@@ -6,11 +6,13 @@ class TestSC < Minitest::Test
       if File.exists?('test/files/.sc/undefined.yml')
         FileUtils.remove_file('test/files/.sc/undefined.yml') 
       end
-      @compiler = SC::Compiler.new
+      @compiler = SC::Compiler.instance
     end
     
-    def test_instance
-      assert_equal @compiler, SC::Compiler.instance
+    def teardown
+      if File.exists?('test/files/.sc/undefined.yml')
+        FileUtils.remove_file('test/files/.sc/undefined.yml') 
+      end
     end
 
     def test_targets

@@ -4,40 +4,22 @@ module SC
   # algorithms (lambdas) providing several ways
   # to fetch specific elements by different criterias.
   class Database
+    
+    include Singleton
+
+    class << self
+      extend Forwardable
+      def_delegators :instance, :fetch, :index
+    end
 
     attr_accessor :cache
 
     def initialize
-      @@instance = self
       self.cache = {}
     end
 
     def index
       @index ||= YAML.load_file('./.sc/index.yml')
-    end
-
-    # Instance delegator of SC::Database#fetch
-    #
-    # @param [Class] klass Class that would impement the lambda
-    # @param [Symbol] method_name the method name that would be implemented
-    # @param [<Symbo>] required_params parameters that would be required by the lambda
-    # @return [Proc] the labda that would be implemented
-    def self.fetch klass, method_name, *required_params
-      self.instance.fetch(klass, method_name, *required_params)
-    end
-
-    # Instane delegator of SC::Database#index
-    #
-    # @return [Hash] the parsed index as Hash
-    def self.index
-      self.instance.index
-    end
-
-    # Returns the singleton instance of SC::Database
-    #
-    # @return [SC::Database] Current/new instance of the SC::Database
-    def self.instance
-      @@instance ||= self.new
     end
     
     # Fetches and return the target lambda based on the 

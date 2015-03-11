@@ -5,15 +5,9 @@ module SC
   # implementations (specs without an associated lambda)
   class Compiler
 
-    def initialize   
-      @@instance = self
-    end
+    include Singleton
 
-    # Returns the singleton instance of SC::Compiler
-    #
-    # @return [SC::Compiler] Current/new instance of the SC::Compiler
-    def self.instance
-      @@instance ||= self.new
+    def initialize   
     end
 
     # Filters the project files keeping those making use of SC.
