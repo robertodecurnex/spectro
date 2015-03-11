@@ -5,13 +5,15 @@ module SC
   # to fetch specific elements by different criterias.
   class Database
 
-    attr_accessor :cache, :index, :sc_path
+    attr_accessor :cache
 
-    def initialize sc_path='.sc'
+    def initialize
       @@instance = self
       self.cache = {}
-      self.sc_path = sc_path
-      self.index = YAML.load_file("#{self.sc_path}/index.yml")
+    end
+
+    def index
+      @index ||= YAML.load_file('./.sc/index.yml')
     end
 
     # Instance delegator of SC::Database#fetch
@@ -22,6 +24,13 @@ module SC
     # @return [Proc] the labda that would be implemented
     def self.fetch klass, method_name, *required_params
       self.instance.fetch(klass, method_name, *required_params)
+    end
+
+    # Instane delegator of SC::Database#index
+    #
+    # @return [Hash] the parsed index as Hash
+    def self.index
+      self.instance.index
     end
 
     # Returns the singleton instance of SC::Database
@@ -39,8 +48,8 @@ module SC
     # @param [<Symbol>] required_params parameters that would be required by the lambda
     # @return [Proc] the labda that would be implemented
     def fetch file_path, method_name, *required_params
-      λ_id = self.index["#{file_path}"]["#{method_name}:#{required_params.count}"]
-      return self.cache[λ_id] ||= eval(File.read("#{self.sc_path}/cache/#{λ_id}.rb"))
+      λ_id = self.index["#{file_path}"]["#{method_name}"]['lambda_id']
+      return self.cache[λ_id] ||= eval(File.read(".sc/cache/#{λ_id}.rb"))
     end
 
   end

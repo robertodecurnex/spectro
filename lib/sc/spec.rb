@@ -6,11 +6,13 @@ module SC
 
   class Spec
  
-    attr_accessor :rules, :signature
-    
+    attr_accessor :md5, :rules, :signature
+   
+    # @param [String] spec md5
     # @param [SC::Spec::Signature] signature spec signature
     # @param [<SC::Spec::Rule>] rules collection of spec rules
-    def initialize signature, rules
+    def initialize md5, signature, rules
+      self.md5 = md5
       self.rules = rules
       self.signature = signature
     end

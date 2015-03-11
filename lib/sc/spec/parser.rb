@@ -45,7 +45,9 @@ module SC
           self.parse_spec_rule(spec_raw_rule)
         end
 
-        return SC::Spec.new(spec_signature, spec_rules)
+        spec_md5 = Digest::MD5.hexdigest(raw_spec)
+
+        return SC::Spec.new(spec_md5, spec_signature, spec_rules)
       end
 
       # Returns a SC::Spec::Rule instance from the raw spec rule

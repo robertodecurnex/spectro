@@ -1,4 +1,6 @@
+require 'digest'
 require 'yaml'
+require 'yaml/store'
 
 require_relative 'sc/compiler.rb'
 require_relative 'sc/database.rb'

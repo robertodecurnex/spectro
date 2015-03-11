@@ -15,6 +15,8 @@ class Sample
 
 end
 
+
+
 __END__
 spec_for hello String -> String
   "Minion"  -> "Say Hello to Minion"

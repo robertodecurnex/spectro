@@ -6,7 +6,7 @@ class TestSC < Minitest::Test
       if File.exists?('test/files/.sc/undefined.yml')
         FileUtils.remove_file('test/files/.sc/undefined.yml') 
       end
-      @compiler = SC::Compiler.new('test/files/.sc')
+      @compiler = SC::Compiler.new
     end
     
     def test_instance
@@ -14,22 +14,33 @@ class TestSC < Minitest::Test
     end
 
     def test_targets
-      assert_equal ['./sample/sample.rb', './test/files/sample.rb'], @compiler.targets.sort
+      Dir.chdir('test/files') do 
+        assert_equal ['sample.rb'], @compiler.send(:targets).sort
+      end
     end
 
     def test_compile
-      skip
-      @compiler.compile
-      expected_undefined = {
-        'test/files/sample.rb' => {
-          'unknown_lambda:1' => {
-            'signature' => 'FalseClass -> TrueClass',
-            'rules' => ['false -> true']
-          }
-        }
-      }
+      Dir.chdir('test/files') do 
+        @compiler.compile
+      end
+      expected_yaml = <<YAML
+---
+"sample.rb":
+- !ruby/object:SC::Spec
+  md5: 94dd639208a00598a7248336398ad769
+  rules:
+  - !ruby/object:SC::Spec::Rule
+    output: true
+    params:
+    - false
+  signature: !ruby/object:SC::Spec::Signature
+    name: unknown_lambda
+    output_type: TrueClass
+    params_types:
+    - FalseClass
+YAML
       assert File.exists?('test/files/.sc/undefined.yml'), 'SC::Compiler#compile was expected to create an undefined.yml file but it did not.'
-      assert_equal expected_undefined, YAML.load_file('test/files/.sc/undefined.yml')
+      assert_equal YAML.load(expected_yaml), YAML.load_file('test/files/.sc/undefined.yml')
     end
 
   end

@@ -5,11 +5,8 @@ module SC
   # implementations (specs without an associated lambda)
   class Compiler
 
-    attr_accessor :sc_path
-
-    def initialize sc_path='.sc'   
+    def initialize   
       @@instance = self
-      self.sc_path = sc_path
     end
 
     # Returns the singleton instance of SC::Compiler
@@ -25,12 +22,32 @@ module SC
     #
     # @return [SC::Compiler] self
     def compile 
-      files_specs = self.targets.inject({}) do |memo, path|
-        memo[path] = SC::Spec::Parser.parse(path)
+      undefined_yaml = YAML::Store.new(".sc/undefined.yml")
+      undefined_yaml.transaction do
+        targets().map do |path|
+          missing_specs = missing_specs_from_file(path)
+
+          next if missing_specs.empty?
+           
+          undefined_yaml[path] = missing_specs
+        end
       end
-      #TODO: Reject specs already registered on index.yml
-      #  and dump the rest of them into the undefined.yml 
+     
       return self
+    end
+
+  private
+
+    # Parse the specs on the given file path and return those specs 
+    # that have not been fulfilled or need to be updated.
+    #
+    # @param [String] path target file path
+    # @return [<SC::Spec>] collection of specs not fulfilled or out of date
+    def missing_specs_from_file(path)
+      SC::Spec::Parser.parse(path).select do |spec|
+        index_spec = SC::Database.index[path] && SC::Database.index[path][spec.signature.name]
+        index_spec.nil? || index_spec['spec_md5'] != spec.md5
+      end
     end
 
     # Filter project's rb files returning an Array of files 
@@ -38,7 +55,9 @@ module SC
     #
     # @return [<String>] array of files to be parsed
     def targets
-      return %x[ grep -Pzrl --include="*.rb" "^__END__.*\\n.*spec_for" . ].split("\n")
+      return %x[ grep -Pzrl --include="*.rb" "^__END__.*\\n.*spec_for" . ].split("\n").collect do |path|
+        path[2..-1] 
+      end
     end
 
   end

@@ -10,7 +10,7 @@ class TestSC < Minitest::Test
     end
 
     def test_equal
-      skip
+      skip "Assert that two different instances of SC::Spec are == if their instance variables are =="
     end
 
   end
