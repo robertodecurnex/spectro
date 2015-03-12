@@ -1,3 +1,7 @@
+require 'sc'
+require 'sc/spec/parser'
+require 'yaml/store'
+
 module SC
 
   # SC:Compiler is in charge of scan the projects and parse its files,
@@ -7,7 +11,9 @@ module SC
 
     include Singleton
 
-    def initialize   
+    class << self
+      extend Forwardable
+      def_delegators :instance, :compile
     end
 
     # Filters the project files keeping those making use of SC.

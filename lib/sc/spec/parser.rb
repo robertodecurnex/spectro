@@ -1,3 +1,5 @@
+require 'sc'
+
 module SC
 
   class Spec

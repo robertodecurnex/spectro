@@ -2,9 +2,7 @@ require 'digest'
 require 'forwardable'
 require 'singleton'
 require 'yaml'
-require 'yaml/store'
 
-require_relative 'sc/compiler.rb'
 require_relative 'sc/database.rb'
 require_relative 'sc/spec.rb'
 

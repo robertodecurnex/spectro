@@ -1,4 +1,3 @@
-require_relative 'spec/parser.rb'
 require_relative 'spec/rule.rb'
 require_relative 'spec/signature.rb'
 

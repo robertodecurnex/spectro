@@ -8,15 +8,25 @@ Gem::Specification.new do |s|
   s.summary = 'SC'
   s.version = '0.1'
 
+  s.bindir = 'bin'
+  s.executables << 'sc'
+
   s.files = [
-    'README.md',
     'lib/sc.rb',
+    'lib/sc/client.rb',
+    'lib/sc/compiler.rb',
     'lib/sc/database.rb',
     'lib/sc/spec.rb',
     'lib/sc/spec/parser.rb',
     'lib/sc/spec/rule.rb',
     'lib/sc/spec/signature.rb' 
   ]
+
+  s.extra_rdoc_files = [
+    'README.md',
+  ]
+  
+  s.add_runtime_dependency 'thor'
 
   s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'minitest'
