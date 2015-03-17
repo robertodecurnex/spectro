@@ -2,6 +2,7 @@
 
 Specs driven social meta-programming
 
+[![Gem Version](https://badge.fury.io/rb/spectro.svg)](http://badge.fury.io/rb/spectro)
 [![Build Status](https://api.travis-ci.org/robertodecurnex/spectro.png)](https://travis-ci.org/robertodecurnex/spectro)
 [![Code Climate](https://codeclimate.com/github/robertodecurnex/spectro/badges/gpa.svg)](https://codeclimate.com/github/robertodecurnex/spectro)
 [![Test Coverage](https://codeclimate.com/github/robertodecurnex/spectro/badges/coverage.svg)](https://codeclimate.com/github/robertodecurnex/spectro)
