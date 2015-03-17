@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'sc/client'
-
-SC::Client.start

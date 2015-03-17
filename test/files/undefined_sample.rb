@@ -1,8 +1,8 @@
-require 'sc'
+require 'spectro'
 
 class UndefinedSample
 
-  include SC
+  include Spectro
 
   implements \
     i_am_undefined: [],

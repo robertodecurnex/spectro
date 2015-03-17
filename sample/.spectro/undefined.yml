@@ -1,0 +1,14 @@
+---
+sample.rb:
+- !ruby/object:Spectro::Spec
+  md5: 94dd639208a00598a7248336398ad769
+  rules:
+  - !ruby/object:Spectro::Spec::Rule
+    output: true
+    params:
+    - false
+  signature: !ruby/object:Spectro::Spec::Signature
+    name: unknown_lambda
+    output_type: TrueClass
+    params_types:
+    - FalseClass

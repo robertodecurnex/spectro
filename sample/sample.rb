@@ -1,8 +1,8 @@
-require 'sc'
+require 'spectro'
 
 class Sample
 
-  include SC
+  include Spectro
 
   implements \
     hello: [:name],
