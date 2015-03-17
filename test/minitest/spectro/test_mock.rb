@@ -24,6 +24,15 @@ class TestSpectro < Minitest::Test
       end
     end
 
+    def test_mock_undefined_response
+      Dir.chdir('test/files') do 
+        Spectro::Config.instance.enable_mocks!
+        assert_raises Spectro::Exception::UnknownMockResponse do 
+          Spectro::Mock.create('sample.rb', 'unknown_lambda').call(true)
+        end
+      end
+    end
+
   end
 
 end

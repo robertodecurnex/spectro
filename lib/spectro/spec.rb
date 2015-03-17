@@ -1,3 +1,4 @@
+require 'spectro/spec/parser'
 require 'spectro/spec/rule'
 require 'spectro/spec/signature'
 

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   s.name = 'spectro'
   s.summary = 'Specs driven social meta-programming'
-  s.version = '0.1'
+  s.version = '0.2'
 
   s.bindir = 'bin'
   s.executables << 'spectro'

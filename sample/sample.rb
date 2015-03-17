@@ -7,7 +7,8 @@ class Sample
   implements \
     hello: [:name],
     rule_of_three: [:a, :b, :c],
-    sum: [:n1, :n2]
+    sum: [:n1, :n2],
+    unknown_lambda: [:b]
 
   def double n1
     self.sum(n1, n1)
