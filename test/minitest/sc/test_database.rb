@@ -22,6 +22,22 @@ class TestSC < Minitest::Test
       assert_equal 'Say Hello to Test', λ.call('Test')
     end
 
+    def test_fetch_undefined_method
+      λ = nil
+      Dir.chdir('test/files') do
+        λ = @database.fetch('sample.rb', 'unknown', [])
+      end
+      assert_equal nil, λ
+    end
+    
+    def test_fetch_undefined_file
+      λ = nil
+      Dir.chdir('test/files') do
+        λ = @database.fetch('unknown.rb', 'sum', [:name])
+      end
+      assert_equal nil, λ
+    end
+
   end
 
 end

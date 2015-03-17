@@ -1,3 +1,5 @@
+require 'rake'
+
 Gem::Specification.new do |s|
   s.authors = ['Roberto Decurnex']
   s.date = '2015-01-13' 
@@ -10,25 +12,20 @@ Gem::Specification.new do |s|
 
   s.bindir = 'bin'
   s.executables << 'sc'
-
-  s.files = [
-    'lib/sc.rb',
-    'lib/sc/client.rb',
-    'lib/sc/compiler.rb',
-    'lib/sc/database.rb',
-    'lib/sc/spec.rb',
-    'lib/sc/spec/parser.rb',
-    'lib/sc/spec/rule.rb',
-    'lib/sc/spec/signature.rb' 
-  ]
+  
+  s.files = FileList['lib/**/*.rb'].to_a
 
   s.extra_rdoc_files = [
     'README.md',
   ]
   
+  s.required_ruby_version = '>= 2.0.0'
+  
   s.add_runtime_dependency 'thor'
 
   s.add_development_dependency 'codeclimate-test-reporter'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-rake'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'yard'

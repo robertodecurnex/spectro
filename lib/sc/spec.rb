@@ -1,5 +1,5 @@
-require_relative 'spec/rule.rb'
-require_relative 'spec/signature.rb'
+require 'sc/spec/rule'
+require 'sc/spec/signature'
 
 module SC
 

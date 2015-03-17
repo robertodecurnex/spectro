@@ -1,4 +1,5 @@
+*.swp
+.yardoc
 Gemfile.lock
 coverage/*
 sample/Gemfile.lock
-.yardoc

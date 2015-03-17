@@ -17,7 +17,7 @@ class TestSC < Minitest::Test
 
     def test_targets
       Dir.chdir('test/files') do 
-        assert_equal ['sample.rb'], @compiler.send(:targets).sort
+        assert_equal ['sample.rb', 'undefined_sample.rb'], @compiler.send(:targets).sort
       end
     end
 
@@ -27,7 +27,18 @@ class TestSC < Minitest::Test
       end
       expected_yaml = <<YAML
 ---
-"sample.rb":
+undefined_sample.rb:
+- !ruby/object:SC::Spec
+  md5: 23d8f3f75459cc94364520d99717a284
+  rules:
+  - !ruby/object:SC::Spec::Rule
+    output: !ruby/class 'TrueClass'
+    params: []
+  signature: !ruby/object:SC::Spec::Signature
+    name: i_am_undefined
+    output_type: TrueClass
+    params_types: []
+sample.rb:
 - !ruby/object:SC::Spec
   md5: 94dd639208a00598a7248336398ad769
   rules:
