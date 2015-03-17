@@ -16,9 +16,7 @@ module Spectro
         spec.signature.name == method_name.to_s
       end
       
-      param_names = Array.new(spec.signature.params_types.count) do |index|
-        ('a'.ord+index).chr
-      end
+      param_names = ('a'..'z').first(spec.signature.params_types.count)
       
       responses = spec.rules.inject({}) do |memo, rule|
         memo[rule.params] = rule.output  
