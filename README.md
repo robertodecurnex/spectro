@@ -1,4 +1,4 @@
-# Spectro
+![Spectro](spectro.png)
 
 Specs driven social meta-programming
 
