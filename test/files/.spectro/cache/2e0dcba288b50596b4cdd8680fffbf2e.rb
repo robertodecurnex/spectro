@@ -2,6 +2,6 @@
 # DO NOT MODIFY ITS CONTENT. IT WILL BE
 # OVERWRITTEN.
 
-lambda do |f1, f2, f3|
+->(f1, f2, f3) {
   return f3 * f2 / f1
-end
+}

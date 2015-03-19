@@ -2,6 +2,6 @@
 # DO NOT MODIFY ITS CONTENT. IT WILL BE
 # OVERWRITTEN.
 
-lambda do |s1|
+->(s1) {
   return "Say Hello to #{s1}"
-end
+}

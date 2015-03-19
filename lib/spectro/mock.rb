@@ -24,13 +24,13 @@ module Spectro
       end
       
       return eval "
-        lambda do |#{param_names.join(',')}|
+        ->(#{param_names.join(',')}) {
           if !responses.has_key?([#{param_names.join(',')}])
             raise Spectro::Exception::UnknownMockResponse.new(file_path, method_name)          
           end
 
           return responses[[#{param_names.join(',')}]] 
-        end
+        }
       "
     end
 
