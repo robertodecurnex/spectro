@@ -10,6 +10,8 @@ Specs driven social meta-programming
 
 ## Prototype
 
+[![Join the chat at https://gitter.im/robertodecurnex/spectro](https://badges.gitter.im/robertodecurnex/spectro.svg)](https://gitter.im/robertodecurnex/spectro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Spectro will fetch an algorithm to cover the given spec form its DB and will then define the `#hello` method using it.
 
 ```ruby
