@@ -36,7 +36,7 @@ module Spectro
     #
     # @param [{String, Symbol=><String, Symbol>}] interfaces hash of method names and required param names supported by the method
     def implements interfaces
-      file_path = caller.first.match(/#{Dir.pwd}\/(.+):\d+:in .+/)[1]
+      file_path = caller.first.match(/(?:^|#{Dir.pwd}\/)([^\/].*):\d+:in .+/)[1]
       interfaces.each do |method_name, required_params|
         λ = Spectro::Database.fetch(file_path, method_name, *required_params) || Spectro::Mock.create(file_path, method_name)
 

@@ -4,6 +4,7 @@ class TestSpectro < Minitest::Test
 
     def setup
       @database = Spectro::Database.instance
+	  @database.reset_index()
     end
 
     def test_class_fetch
@@ -29,7 +30,7 @@ class TestSpectro < Minitest::Test
       end
       assert_equal nil, λ
     end
-    
+
     def test_fetch_undefined_file
       λ = nil
       Dir.chdir('test/files') do
@@ -37,6 +38,18 @@ class TestSpectro < Minitest::Test
       end
       assert_equal nil, λ
     end
+
+	def test_index
+		Dir.chdir('test/files') do
+			@database.index()
+		end
+	end
+
+	def test_index_on_unitialized_project
+		Dir.chdir('test/uninitialized_project') do
+			@database.index
+		end
+	end
 
   end
 

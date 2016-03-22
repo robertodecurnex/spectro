@@ -22,8 +22,14 @@ module Spectro
     #
     # @return [Hash] the parsed index.yml
     def index
-      @index ||= YAML.load_file('./.spectro/index.yml')
+      @index ||= File.exist?('./.spectro/index.yml') ? YAML.load_file('./.spectro/index.yml') : {}
     end
+
+	# Sets the index cache to nil
+	# Just in case you want the database to parse the file once again
+	def reset_index
+		@index = nil
+	end
 
     # Fetches and returns the target lambda based on the
     # given class, method name and required aprameters.
