@@ -1,28 +1,28 @@
 class TestSpectro < Minitest::Test
 
   class TestCompiler < Minitest::Test
-  
+
     def setup
       if File.exists?('test/files/.spectro/undefined.yml')
-        FileUtils.remove_file('test/files/.spectro/undefined.yml') 
+        FileUtils.remove_file('test/files/.spectro/undefined.yml')
       end
       @compiler = Spectro::Compiler.instance
     end
-    
+
     def teardown
       if File.exists?('test/files/.spectro/undefined.yml')
-        FileUtils.remove_file('test/files/.spectro/undefined.yml') 
+        FileUtils.remove_file('test/files/.spectro/undefined.yml')
       end
     end
 
     def test_targets
-      Dir.chdir('test/files') do 
+      Dir.chdir('test/files') do
         assert_equal ['sample.rb', 'undefined_sample.rb'], @compiler.send(:targets).sort
       end
     end
 
     def test_compile
-      Dir.chdir('test/files') do 
+      Dir.chdir('test/files') do
         @compiler.compile
       end
       expected_yaml = <<YAML
@@ -55,6 +55,14 @@ YAML
       assert File.exists?('test/files/.spectro/undefined.yml'), 'Spectro::Compiler#compile was expected to create an undefined.yml file but it did not.'
       assert_equal YAML.load(expected_yaml), YAML.load_file('test/files/.spectro/undefined.yml')
     end
+
+	def test_compile_without_init
+      Dir.chdir('test/uninitialized_project') do
+	  	assert_raises(SystemExit) do
+        	@compiler.compile
+		end
+      end
+	end
 
   end
 

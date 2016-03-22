@@ -1,3 +1,4 @@
+require 'colorize'
 require 'digest'
 require 'forwardable'
 require 'singleton'

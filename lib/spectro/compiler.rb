@@ -22,6 +22,10 @@ module Spectro
     #
     # @return [Spectro::Compiler] self
     def compile
+	  if !Dir.exist?('.spectro')
+	  	abort "\n" + "This folder has not been initialzed as an Spectro project. Please run ".on_red + " spectro init ".on_light_black + " before compiling.".on_red + "\n\n"
+	  end
+
       undefined_yaml = YAML::Store.new(".spectro/undefined.yml")
       undefined_yaml.transaction do
         targets().map do |path|
