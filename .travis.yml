@@ -1,17 +1,17 @@
 language: ruby
 rvm:
-  - 2.3.0
+  - 2.2.4
 addons:
   code_climate:
     repo_token: 98cf9bc8037d53ca3bbe6873a3ce6cf69bab5a86bfd21507b5baa9faae2ec6dc
 before_install:
   - gem update --system
   - gem --version
-  notifications:
-webhooks:
-  urls:
-    - https://webhooks.gitter.im/e/67d24e680b4c837ae740
-  on_success: change
-  on_failure: always
-  on_start: never
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/67d24e680b4c837ae740
+    on_success: change
+    on_failure: always
+    on_start: never
 
