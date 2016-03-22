@@ -1,5 +1,6 @@
 language: ruby
 rvm:
+  - ruby-head
   - 2.2.4
 addons:
   code_climate:
@@ -7,6 +8,7 @@ addons:
 before_install:
   - gem update --system
   - gem --version
+  - gem update bundler
 notifications:
   webhooks:
     urls:
