@@ -7,10 +7,14 @@ class TestSpectro < Minitest::Test
   class TestSpec < Minitest::Test
 
     def setup
+		@rule = Spectro::Spec::Rule.new([1, 2], 3)
+		@signature = Spectro::Spec::Signature.new('local_name', ['Fixnum'], 'Fixnum')
+		@spec = Spectro::Spec.new('md5', @signature, [@rule])
     end
 
     def test_equal
-      skip "Assert that two different instances of Spectro::Spec are == if their instance variables are =="
+		@spec2 = Spectro::Spec.new('md5', @signature, [@rule])
+		assert @spec === @spec2
     end
 
   end
