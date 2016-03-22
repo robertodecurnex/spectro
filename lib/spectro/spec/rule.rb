@@ -7,7 +7,7 @@ module Spectro
     class Rule
 
       attr_accessor :output, :params
-    
+
       # @param [<Object>] parmas set of input params
       # @param [<Object>] output expected result
       def initialize params, output

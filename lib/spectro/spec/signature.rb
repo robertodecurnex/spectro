@@ -1,12 +1,12 @@
 module Spectro
 
   class Spec
-    
-    # Representation of the required input/output types 
+
+    # Representation of the required input/output types
     class Signature
-    
+
       attr_accessor :name, :output_type, :params_types
-    
+
       # @param [String] name local name of the algorith (not sure if needed)
       # @param [<String>] param_types types of the expected input params
       # @param [String] output_type type of the expected output
