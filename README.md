@@ -41,7 +41,7 @@ sample.hello 'Eddie' #=> 'Say Hello to Eddie'
 
 ### Scenarios
 
-* Keep coding while waiting for an algorithm that cover your specs
+* Keep coding while waiting for an algorithm that covers your specs
 * Using **Spectro** just to mock stuff
 
 ```ruby
