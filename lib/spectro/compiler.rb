@@ -23,7 +23,7 @@ module Spectro
     # @return [Spectro::Compiler] self
     def compile
 	  if !Dir.exist?('.spectro')
-	  	abort "\n" + "This folder has not been initialzed as an Spectro project. Please run ".on_red + " spectro init ".on_light_black + " before compiling.".on_red + "\n\n"
+	  	abort "\n" + "This folder has not been initialzed as an Spectro project. Please run ".white.on_red + " spectro init ".white.on_light_black + " before compiling.".white.on_red + "\n\n"
 	  end
 
       undefined_yaml = YAML::Store.new(".spectro/undefined.yml")
@@ -39,6 +39,32 @@ module Spectro
 
       return self
     end
+
+	# Init the current folder as an Spectro project, creating all the required files and folders
+	# `.spectro` confg file
+	# `.spectro/index.yml` which will hold the mappings between Files/Method names and defined lambdas
+	# `.spectro/undefined.yml` which will hold the collection of spec definitions not yet fulfilled
+	# `.spectro/cache` folder that will hold the source code of the retrieved lambdas
+	#
+	# @return [Spectro::Compiler] self
+	def init options={}
+		if File.exist?('.spectro/config') && !options[:f]
+			abort "\n" + "Project already initialized. If you want to reset the curret setup you can run ".white.on_yellow + " spectro init -f ".white.on_light_black + "\n\n"
+		end
+
+		Dir.exist?('.spectro') || Dir.mkdir('.spectro')
+		Dir.exist?('.spectro/cache') || Dir.mkdir('.spectro/cache')
+		File.open('.spectro/config', 'w') do |file|
+		end
+		File.open('.spectro/index.yml', 'w') do |file|
+		end
+		File.open('.spectro/undefined.yml', 'w') do |file|
+		end
+
+		puts "\n" + "The project has been successfully initialized".white.on_blue + "\n\n"
+
+		return self
+	end
 
   private
 

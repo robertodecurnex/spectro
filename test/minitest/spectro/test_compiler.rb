@@ -64,6 +64,40 @@ YAML
       end
 	end
 
+	def test_init
+		Dir.mktmpdir do |tmp_dir|
+			Dir.chdir(tmp_dir) do
+				@compiler.init
+				assert Dir.exist? '.spectro'
+				assert Dir.exist? '.spectro/cache'
+				assert File.exist? '.spectro/config'
+				assert File.exist? '.spectro/index.yml'
+				assert File.exist? '.spectro/undefined.yml'
+			end
+		end
+	end
+
+	def test_init_on_initialized_project
+	  	assert_raises(SystemExit) do
+			Dir.chdir('test/files') do
+				@compiler.init
+			end
+		end
+	end
+
+	def test_forced_init_on_project
+		Dir.mktmpdir do |tmp_dir|
+			Dir.chdir(tmp_dir) do
+				@compiler.init
+				File.open('.spectro/index.yml', 'w') do |file|
+					file.write('content')
+				end
+				@compiler.init({f: true})
+				assert(File.read('.spectro/index.yml') === '')
+			end
+		end
+	end
+
   end
 
 end
