@@ -22,7 +22,7 @@ class TestSpectro < Minitest::Test
       Dir.mktmpdir do |tmp_dir|
         Dir.chdir(tmp_dir) do
           mock = Minitest::Mock.new
-          mock.expect :init, true
+          mock.expect :init, true, [{}]
 
           Spectro::Compiler.stub :instance, mock do
             @client.init
