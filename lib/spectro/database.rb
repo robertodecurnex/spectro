@@ -22,14 +22,14 @@ module Spectro
     #
     # @return [Hash] the parsed index.yml
     def index
-      @index ||= File.exist?('./.spectro/index.yml') ? YAML.load_file('./.spectro/index.yml') : {}
+      return @index ||= load_index()
     end
 
-	# Sets the index cache to nil
-	# Just in case you want the database to parse the file once again
-	def reset_index
-		@index = nil
-	end
+    # Sets the index cache to nil
+    # Just in case you want the database to parse the file once again
+    def reset_index
+      @index = nil
+    end
 
     # Fetches and returns the target lambda based on the
     # given class, method name and required aprameters.
@@ -45,6 +45,16 @@ module Spectro
       λ_id = self.index["#{file_path}"]["#{method_name}"]['lambda_id']
       return self.cache[λ_id] ||= eval(File.read(".spectro/cache/#{λ_id}.rb"))
     end
+
+    private
+
+      # Loads and returns the current project index or returns
+      # an empty one if not found
+      def load_index
+        return {} if !File.exist?('.spectro/index.yml')
+
+        return YAML.load_file('.spectro/index.yml') || {}
+      end
 
   end
 
