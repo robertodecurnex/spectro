@@ -51,3 +51,5 @@ module Spectro
 
 end
 
+# Loads the current project config, if present
+load '.spectro/config' if File.exist?('.spectro/config')

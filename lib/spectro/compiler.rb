@@ -13,7 +13,7 @@ module Spectro
 
     class << self
       extend Forwardable
-      def_delegators :instance, :compile
+      def_delegators :instance, :compile, :init
     end
 
     # Filters the project files keeping those that make use of Spectro.
@@ -55,6 +55,14 @@ module Spectro
 		Dir.exist?('.spectro') || Dir.mkdir('.spectro')
 		Dir.exist?('.spectro/cache') || Dir.mkdir('.spectro/cache')
 		File.open('.spectro/config', 'w') do |file|
+			file.write <<-CONFIG
+#!/usr/bin/env ruby
+
+Spectro.configure do |config|
+#	Instead of fail in case of unfulfille functions it will try to use the local specs to get a result
+#	config.enable_mocks!
+end
+			CONFIG
 		end
 		File.open('.spectro/index.yml', 'w') do |file|
 		end

@@ -12,7 +12,7 @@ module Spectro
 		end
 
 		desc 'init', 'Initialize the current folder as an Spectro project, creating all the required files and folders.'
-		option :f => :boolean
+		option :f, type: :boolean
 		def init
 			require 'spectro/compiler'
 			Spectro::Compiler.init options
