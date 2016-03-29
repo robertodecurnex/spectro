@@ -1,12 +1,16 @@
 require 'colorize'
 require 'digest'
 require 'forwardable'
+require 'net/http'
 require 'singleton'
+require 'uri'
 require 'yaml'
 
+require 'spectro/compiler'
 require 'spectro/config'
 require 'spectro/database'
 require 'spectro/exception'
+require 'spectro/http_client'
 require 'spectro/mock'
 require 'spectro/spec'
 

@@ -49,7 +49,7 @@ module Spectro
   # @return [Spectro::Compiler] self
   def init options={}
     if File.exist?('.spectro/config') && !options[:f]
-      abort "\n" + "Project already initialized. If you want to reset the curret setup you can run ".white.on_yellow + " spectro init -f ".white.on_light_black + "\n\n"
+      abort "\n" + "Project already initialized. If you want to reset the curret setup you can run ".black.on_yellow + " spectro init -f ".white.on_light_black + "\n\n"
     end
 
     Dir.exist?('.spectro') || Dir.mkdir('.spectro')
@@ -59,7 +59,10 @@ module Spectro
 #!/usr/bin/env ruby
 
 Spectro.configure do |config|
-# Instead of fail in case of unfulfille functions it will try to use the local specs to get a result
+# Sets a custom API Hostname if needed
+# config.api_hostname = 'localhost:9292'
+#
+# Instead of failing in case of unfulfilled functions it will try to use the local specs to get a result
 # config.enable_mocks!
 end
       CONFIG
@@ -69,7 +72,7 @@ end
     File.open('.spectro/undefined.yml', 'w') do |file|
     end
 
-    puts "\n" + "The project has been successfully initialized".white.on_blue + "\n\n"
+    puts "\n" + "The project has been successfully initialized".black.on_blue + "\n\n"
 
     return self
   end

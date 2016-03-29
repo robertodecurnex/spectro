@@ -18,7 +18,7 @@ class TestSpectro < Minitest::Test
       end
     end
 
-    def test_compile
+    def test_compile_on_unitialized_project
       Dir.mktmpdir do |tmp_dir|
         Dir.chdir(tmp_dir) do
           mock = Minitest::Mock.new
@@ -31,5 +31,18 @@ class TestSpectro < Minitest::Test
         end
       end
     end
+
+    def test_upload
+      Dir.chdir('test/files') do
+        mock = Minitest::Mock.new
+        mock.expect :upload_undefined_specs, true
+
+        Spectro::HTTPClient.stub :instance, mock do
+          @client.upload
+          mock.verify
+        end
+      end
+    end
+
   end
 end
