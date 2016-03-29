@@ -39,7 +39,7 @@ sample.rb:
         mock = Minitest::Mock.new
         mock.expect :request, true do |request|
           assert_equal Net::HTTP::Post, request.class
-          assert_equal expected_body, request.body
+          assert_equal YAML.load(expected_body), YAML.load(request.body)
         end
 
         Spectro::Compiler.compile
