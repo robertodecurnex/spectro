@@ -11,7 +11,7 @@ module Spectro
     end
 
     def upload_undefined_specs
-      uri = URI.parse('http://' + Spectro::Config.api_hostname + '/undefined')
+      uri = URI.parse('http://' + Spectro::Config.api_hostname + '/api/specs')
       file_path = '.spectro/undefined.yml'
 
       http = Net::HTTP.new(uri.host, uri.port)
