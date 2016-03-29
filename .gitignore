@@ -4,3 +4,4 @@
 Gemfile.lock
 coverage/*
 sample/Gemfile.lock
+test/files/.spectro/undefined.yml
