@@ -3,6 +3,7 @@ class TestSpectro < Minitest::Test
   class TestHTTPClient < Minitest::Test
 
     def setup
+      Singleton.__init__(Spectro::Database)
       @http_client = Spectro::HTTPClient.instance
     end
 

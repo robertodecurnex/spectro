@@ -6,6 +6,7 @@ class TestSpectro < Minitest::Test
       if File.exists?('test/files/.spectro/undefined.yml')
         FileUtils.remove_file('test/files/.spectro/undefined.yml')
       end
+      Singleton.__init__(Spectro::Database)
       @compiler = Spectro::Compiler.instance
     end
 
