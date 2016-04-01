@@ -23,6 +23,14 @@ module Spectro
           self.params_types == signature.params_types
       end
 
+      def to_json options = nil
+        return {
+          name: self.name,
+          output_type: self.output_type,
+          params_type: self.params_types
+        }.to_json(options)
+      end
+
     end
 
   end

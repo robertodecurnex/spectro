@@ -5,9 +5,9 @@ require 'spectro/spec/signature'
 module Spectro
 
   class Spec
- 
+
     attr_accessor :md5, :rules, :signature
-   
+
     # @param [String] spec md5
     # @param [Spectro::Spec::Signature] signature spec signature
     # @param [<Spectro::Spec::Rule>] rules collection of spec rules
@@ -21,6 +21,14 @@ module Spectro
       return \
         self.signature == spec.signature && \
         self.rules == spec.rules
+    end
+
+    def to_json options = nil
+      return {
+        md5: self.md5,
+        rules: self.rules.to_json(options),
+        signature: self.signature.to_json(options)
+      }.to_json(options)
     end
 
   end

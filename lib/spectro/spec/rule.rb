@@ -21,6 +21,13 @@ module Spectro
           self.params == rule.params
       end
 
+      def to_json options = nil
+        return {
+          output: self.output,
+          params: self.params
+        }.to_json(options)
+      end
+
     end
 
   end
