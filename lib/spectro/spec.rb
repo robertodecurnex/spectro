@@ -23,12 +23,12 @@ module Spectro
         self.rules == spec.rules
     end
 
-    def to_json options = nil
+    def to_hash
       return {
         md5: self.md5,
-        rules: self.rules.to_json(options),
-        signature: self.signature.to_json(options)
-      }.to_json(options)
+        rules: self.rules.collect(&:to_hash),
+        signature: self.signature.to_hash
+      }
     end
 
   end
