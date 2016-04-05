@@ -22,15 +22,21 @@ spec_for hello String -> String
   "Roland"  -> "Say Hello to Roland"
 
 spec_for sum Fixnum, Fixnum -> Fixnum
+`Single line description
   1, 1 -> 2
   1, 2 -> 3
   2, 2 -> 4
 
 spec_for rule_of_three Float, Float, Float -> Float
+`Multi-line
+`description
   1.0, 1.0, 2.0  -> 2.0
   2.0, 4.0, 3.0  -> 6.0
   10.0, 2.0, 3.0 -> 0.6
 
 spec_for unknown_lambda FalseClass -> TrueClass
+`Multi-line description
+`
+`With blank line in the middle
   false -> true
 

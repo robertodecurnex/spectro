@@ -3,9 +3,6 @@ class TestSpectro < Minitest::Test
   class TestCompiler < Minitest::Test
 
     def setup
-      if File.exists?('test/files/.spectro/undefined.yml')
-        FileUtils.remove_file('test/files/.spectro/undefined.yml')
-      end
       Singleton.__init__(Spectro::Database)
       @compiler = Spectro::Compiler.instance
     end
@@ -31,6 +28,7 @@ class TestSpectro < Minitest::Test
 undefined_sample.rb:
 - !ruby/object:Spectro::Spec
   md5: 23d8f3f75459cc94364520d99717a284
+  description: ''
   rules:
   - !ruby/object:Spectro::Spec::Rule
     output: !ruby/class 'TrueClass'
@@ -41,7 +39,8 @@ undefined_sample.rb:
     params_types: []
 sample.rb:
 - !ruby/object:Spectro::Spec
-  md5: 94dd639208a00598a7248336398ad769
+  md5: d10062f3fefde7c4b1388be2cb7c7bb6
+  description: "Multi-line description \\nWith blank line in the middle"
   rules:
   - !ruby/object:Spectro::Spec::Rule
     output: true

@@ -39,9 +39,17 @@ module Spectro
       # @param [String] raw_spec raw spec
       # @return [Spectro::Spec] the Spectro::Spec instance
       def parse_spec raw_spec
-        spec_raw_signature, *spec_raw_rules = raw_spec.split("\n").reject(&:empty?)
+        spec_raw_signature, *spec_raw_desc_and_rules  = raw_spec.split("\n").reject(&:empty?)
 
         spec_signature = self.parse_spec_signature(spec_raw_signature)
+
+        spec_raw_description = spec_raw_desc_and_rules.take_while do |desc_or_rule|
+          desc_or_rule.match(/^`/)
+        end
+
+        spec_description = self.parse_spec_description(spec_raw_description)
+
+        spec_raw_rules = spec_raw_desc_and_rules - spec_raw_description
 
         spec_rules = spec_raw_rules.map do |spec_raw_rule|
           self.parse_spec_rule(spec_raw_rule)
@@ -49,12 +57,26 @@ module Spectro
 
         spec_md5 = Digest::MD5.hexdigest(raw_spec)
 
-        return Spectro::Spec.new(spec_md5, spec_signature, spec_rules)
+        return Spectro::Spec.new(spec_md5, spec_signature, spec_description, spec_rules)
+      end
+
+      # Returns the spec description from the raw spec description
+      #
+      # @param [String] spec_raw_description spec's raw description
+      # @return [String] spec description
+      def parse_spec_description(spec_raw_description)
+        return spec_raw_description.collect do |raw_description|
+          if raw_description[1..-1].empty?
+            next "\n"
+          end
+
+          next raw_description[1..-1].strip
+        end.join(' ').strip.gsub("\n ", "\n")
       end
 
       # Returns an Spectro::Spec::Rule instance from the raw spec rule
       #
-      # @param [String] spec_raw_rule raw rule if the spec
+      # @param [String] spec_raw_rule raw rule of the spec
       # @return [Spectro::Spec::Rule] spec rule instance
       def parse_spec_rule spec_raw_rule
         # REGEX HERE PLEASE, F%#&!@* EASY

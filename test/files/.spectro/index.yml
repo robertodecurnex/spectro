@@ -3,13 +3,13 @@
 # OVERWRITTEN.
 
 sample.rb:
-  "hello": 
+  "hello":
     lambda_id: bfc794ba0e2f5aca9a2e4550ad8632e7
     spec_md5: 1aa2c69a47b054824a21b295f089ca3d
-  "sum": 
+  "sum":
     lambda_id: 1db993c17e61ad1fa3a064b34892ff11
-    spec_md5: 0f53328066424f07d2a5bd8bebbdd534
-  "rule_of_three": 
+    spec_md5: 74cbc71617213a3a542f1dc71911712d
+  "rule_of_three":
     lambda_id: 8832fa985fc6ed6453428472a05f50c0
-    spec_md5: 2690a33a08fc2ccf651fb79dbeda10f8
+    spec_md5: 588c12efd07f0c90d3f2c85666babc4b
 

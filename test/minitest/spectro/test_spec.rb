@@ -9,17 +9,19 @@ class TestSpectro < Minitest::Test
     def setup
       @rule = Spectro::Spec::Rule.new([1, 2], 3)
       @signature = Spectro::Spec::Signature.new('local_name', ['Fixnum'], 'Fixnum')
-      @spec = Spectro::Spec.new('md5', @signature, [@rule])
+      @description = "Random Description In Here"
+      @spec = Spectro::Spec.new('md5', @signature, @description, [@rule])
     end
 
     def test_equal
-      spec2 = Spectro::Spec.new('md5', @signature, [@rule])
+      spec2 = Spectro::Spec.new('md5', @signature, @description, [@rule])
       assert @spec === spec2
     end
 
     def test_to_hash
       assert_equal @spec.to_hash, {
         md5: "md5",
+        description: "Random Description In Here",
         rules:[
           {
             output: 3,
