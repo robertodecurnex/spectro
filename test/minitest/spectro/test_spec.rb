@@ -10,11 +10,12 @@ class TestSpectro < Minitest::Test
       @rule = Spectro::Spec::Rule.new([1, 2], 3)
       @signature = Spectro::Spec::Signature.new('local_name', ['Fixnum'], 'Fixnum')
       @description = "Random Description In Here"
-      @spec = Spectro::Spec.new('md5', @signature, @description, [@rule])
+      @tags = ["tag1", "tag2"]
+      @spec = Spectro::Spec.new('md5', @signature, @description, [@rule], @tags)
     end
 
     def test_equal
-      spec2 = Spectro::Spec.new('md5', @signature, @description, [@rule])
+      spec2 = Spectro::Spec.new('md5', @signature, @description, [@rule], @tags)
       assert @spec === spec2
     end
 
@@ -32,7 +33,11 @@ class TestSpectro < Minitest::Test
           name: "local_name",
           output_type: "Fixnum",
           params_type: ["Fixnum"]
-        }
+        },
+        tags: [
+          "tag1",
+          "tag2"
+        ]
       }
     end
 

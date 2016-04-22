@@ -20,12 +20,14 @@ spec_for hello String -> String
   "Minion"  -> "Say Hello to Minion"
   "Roberto" -> "Say Hello to Roberto"
   "Roland"  -> "Say Hello to Roland"
+@tags: hello string
 
 spec_for sum Fixnum, Fixnum -> Fixnum
 `Single line description
   1, 1 -> 2
   1, 2 -> 3
   2, 2 -> 4
+@tags: sum math number
 
 spec_for rule_of_three Float, Float, Float -> Float
 `Multi-line

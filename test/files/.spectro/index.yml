@@ -5,10 +5,10 @@
 sample.rb:
   "hello":
     lambda_id: bfc794ba0e2f5aca9a2e4550ad8632e7
-    spec_md5: 1aa2c69a47b054824a21b295f089ca3d
+    spec_md5: 5fd6bb631c2f04bed050e0080198c6eb
   "sum":
     lambda_id: 1db993c17e61ad1fa3a064b34892ff11
-    spec_md5: 74cbc71617213a3a542f1dc71911712d
+    spec_md5: 79d52405c2c900f7dcb3a00a38f5145d
   "rule_of_three":
     lambda_id: 8832fa985fc6ed6453428472a05f50c0
     spec_md5: 588c12efd07f0c90d3f2c85666babc4b

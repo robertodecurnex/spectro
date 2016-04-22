@@ -27,8 +27,8 @@ class TestSpectro < Minitest::Test
 ---
 undefined_sample.rb:
 - !ruby/object:Spectro::Spec
-  md5: 23d8f3f75459cc94364520d99717a284
   description: ''
+  md5: 23d8f3f75459cc94364520d99717a284
   rules:
   - !ruby/object:Spectro::Spec::Rule
     output: !ruby/class 'TrueClass'
@@ -37,10 +37,11 @@ undefined_sample.rb:
     name: i_am_undefined
     output_type: TrueClass
     params_types: []
+  tags: []
 sample.rb:
 - !ruby/object:Spectro::Spec
-  md5: d10062f3fefde7c4b1388be2cb7c7bb6
   description: "Multi-line description \\nWith blank line in the middle"
+  md5: d10062f3fefde7c4b1388be2cb7c7bb6
   rules:
   - !ruby/object:Spectro::Spec::Rule
     output: true
@@ -51,6 +52,7 @@ sample.rb:
     output_type: TrueClass
     params_types:
     - FalseClass
+  tags: []
       YAML
       assert File.exists?('test/files/.spectro/undefined.yml'), 'Spectro::Compiler#compile was expected to create an undefined.yml file but it did not.'
       assert_equal YAML.load(expected_yaml), YAML.load_file('test/files/.spectro/undefined.yml')

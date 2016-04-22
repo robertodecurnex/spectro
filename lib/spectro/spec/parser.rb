@@ -39,17 +39,23 @@ module Spectro
       # @param [String] raw_spec raw spec
       # @return [Spectro::Spec] the Spectro::Spec instance
       def parse_spec raw_spec
-        spec_raw_signature, *spec_raw_desc_and_rules  = raw_spec.split("\n").reject(&:empty?)
+        spec_raw_signature, *spec_raw_body  = raw_spec.split("\n").reject(&:empty?)
 
         spec_signature = self.parse_spec_signature(spec_raw_signature)
 
-        spec_raw_description = spec_raw_desc_and_rules.take_while do |desc_or_rule|
-          desc_or_rule.match(/^`/)
+        spec_raw_description = spec_raw_body.take_while do |line|
+          line.match(/^`/)
+        end
+
+        spec_raw_tags = spec_raw_body.select do |line|
+          line.match(/^@tags(:| |$)/)
         end
 
         spec_description = self.parse_spec_description(spec_raw_description)
 
-        spec_raw_rules = spec_raw_desc_and_rules - spec_raw_description
+        spec_tags = self.parse_spec_tags(spec_raw_tags)
+
+        spec_raw_rules = spec_raw_body - spec_raw_description - spec_raw_tags
 
         spec_rules = spec_raw_rules.map do |spec_raw_rule|
           self.parse_spec_rule(spec_raw_rule)
@@ -57,7 +63,7 @@ module Spectro
 
         spec_md5 = Digest::MD5.hexdigest(raw_spec)
 
-        return Spectro::Spec.new(spec_md5, spec_signature, spec_description, spec_rules)
+        return Spectro::Spec.new(spec_md5, spec_signature, spec_description, spec_rules, spec_tags)
       end
 
       # Returns the spec description from the raw spec description
@@ -72,6 +78,16 @@ module Spectro
 
           next raw_description[1..-1].strip
         end.join(' ').strip.gsub("\n ", "\n")
+      end
+
+      # Returns the spec tags from the raw spec tags
+      #
+      # @param [String] spec_raw_tags spec's raw tags
+      # @return [<String>] spec tags
+      def parse_spec_tags(spec_raw_tags)
+        return spec_raw_tags.collect do |raw_tags|
+          raw_tags.sub(/^@tags:?/, '').split(' ').compact
+        end.flatten
       end
 
       # Returns an Spectro::Spec::Rule instance from the raw spec rule
